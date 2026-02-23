@@ -60,8 +60,8 @@ app.post('/api/payments/p24/register', async (req, res) => {
         client: clientName,
         country: 'PL',
         language: 'pl',
-        urlReturn: `http://localhost:5173/payment/success?session=${sessionId}`,
-        urlStatus: `http://localhost:3002/api/payments/p24/webhook`,
+        urlReturn: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/payment/success?session=${sessionId}`,
+        urlStatus: `${process.env.BACKEND_URL || 'http://localhost:3002'}/api/payments/p24/webhook`,
         sign
     };
 
@@ -123,8 +123,8 @@ app.post('/api/payments/stripe/create-checkout-session', async (req, res) => {
                 quantity: 1,
             }],
             mode: 'payment',
-            success_url: `http://localhost:5173/?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `http://localhost:5173/`,
+            success_url: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/`,
             metadata: {
                 productId,
                 clientName,
@@ -359,13 +359,13 @@ app.delete('/api/services/:id', (req, res) => {
 const distPath = join(__dirname, 'dist');
 if (fs.existsSync(distPath)) {
     app.use(express.static(distPath));
+    // Catch-all route for React frontend (must be after API routes)
     app.use((req, res, next) => {
-        // Skip API routes so they don't get caught by the catch-all
-        if (!req.path.startsWith('/api')) {
-            res.sendFile(join(distPath, 'index.html'));
-        } else {
-            next();
+        // Skip API routes and static files
+        if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+            return next();
         }
+        res.sendFile(join(distPath, 'index.html'));
     });
 }
 

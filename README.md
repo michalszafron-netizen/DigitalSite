@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+# DigitalSite - Portfolio & Services Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + TypeScript + Express.js application for showcasing digital services and products with payment integration.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React frontend with TypeScript
+- Express.js backend API
+- SQLite database (local) / PostgreSQL (production)
+- Payment integrations (Stripe, Przelewy24)
+- Email notifications
+- Admin dashboard
+- Contact form
+- Product and service management
 
-## React Compiler
+## Local Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-## Expanding the ESLint configuration
+### Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create `.env` file from `.env.example`:
+   ```bash
+   cp .env.example .env
+   ```
+4. Update the `.env` file with your configuration
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Running Locally
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Build the frontend:
+   ```bash
+   npm run build
+   ```
+2. Start the server:
+   ```bash
+   npm start
+   ```
+3. For development with hot reload:
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The application will be available at:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:3002
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Railway Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This application is configured for easy deployment on Railway.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Prerequisites
+1. Railway account (https://railway.app)
+2. GitHub repository with this code
+
+### Deployment Steps
+
+1. **Connect to Railway**
+   - Go to Railway.app
+   - Click "New Project"
+   - Select "Deploy from GitHub repo"
+   - Choose your repository
+
+2. **Configure Environment Variables**
+   - In Railway dashboard, go to your project → Variables
+   - Add all variables from `.env.example`
+   - Update `FRONTEND_URL` and `BACKEND_URL` to your Railway domain
+   - Set `P24_SANDBOX=true` for testing payments
+
+3. **Deploy**
+   - Railway will automatically detect the configuration
+   - It will build and deploy the application
+   - The deployment will be available at `https://your-app-name.up.railway.app`
+
+4. **Database (Optional)**
+   - Railway automatically provides PostgreSQL
+   - The app uses SQLite locally but can be configured for PostgreSQL
+
+### Railway Configuration Files
+
+- `railway.json` - Railway deployment configuration
+- `nixpacks.toml` - Build configuration for Railway
+
+## Environment Variables
+
+See `.env.example` for all required environment variables.
+
+## API Endpoints
+
+- `GET /api/products` - Get all products
+- `POST /api/contact` - Submit contact form
+- `POST /api/payments/stripe/create-checkout-session` - Create Stripe checkout
+- `POST /api/payments/p24/register` - Register Przelewy24 transaction
+- `GET /api/admin/submissions` - Get contact submissions (admin)
+- And more...
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Server crashes with PathError**
+   - Fixed in current version (Express 5 compatibility issue)
+
+2. **Missing environment variables**
+   - Ensure all required variables are set in Railway
+
+3. **Payment gateways not working**
+   - Check API keys and sandbox/test mode settings
+   - Verify webhook URLs are correctly configured
+
+## License
+
+MIT

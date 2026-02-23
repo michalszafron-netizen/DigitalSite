@@ -1,0 +1,93 @@
+npm warn config production Use `--omit=dev` instead.
+> digitalsite@0.0.0 start
+> npx tsx server.ts
+npm warn config production Use `--omit=dev` instead.
+[dotenv@17.3.1] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+WARNING: STRIPE_SECRET_KEY is missing. Stripe payments will be disabled.
+/app/node_modules/path-to-regexp/src/index.ts:225
+      throw new PathError(`Missing parameter name at index ${index}`, str);
+            ^
+PathError [TypeError]: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (/app/node_modules/path-to-regexp/src/index.ts:225:13)
+    at parse (/app/node_modules/path-to-regexp/src/index.ts:242:62)
+    at pathToRegexp (/app/node_modules/path-to-regexp/src/index.ts:480:54)
+    at Object.match (/app/node_modules/path-to-regexp/src/index.ts:438:28)
+    at matcher (/app/node_modules/router/lib/layer.js:86:23)
+    at new Layer (/app/node_modules/router/lib/layer.js:93:62)
+    at Function.route (/app/node_modules/router/index.js:428:17)
+    at Function.route (/app/node_modules/express/lib/application.js:257:22)
+    at app.<computed> [as get] (/app/node_modules/express/lib/application.js:478:22)
+    at <anonymous> (/app/server.ts:362:9) {
+  originalPath: '*'
+}
+Node.js v22.22.0
+npm warn config production Use `--omit=dev` instead.
+> digitalsite@0.0.0 start
+npm warn config production Use `--omit=dev` instead.
+> npx tsx server.ts
+[dotenv@17.3.1] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+WARNING: STRIPE_SECRET_KEY is missing. Stripe payments will be disabled.
+/app/node_modules/path-to-regexp/src/index.ts:225
+      throw new PathError(`Missing parameter name at index ${index}`, str);
+            ^
+PathError [TypeError]: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (/app/node_modules/path-to-regexp/src/index.ts:225:13)
+    at parse (/app/node_modules/path-to-regexp/src/index.ts:242:62)
+    at pathToRegexp (/app/node_modules/path-to-regexp/src/index.ts:480:54)
+    at Object.match (/app/node_modules/path-to-regexp/src/index.ts:438:28)
+PathError [TypeError]: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (/app/node_modules/path-to-regexp/src/index.ts:225:13)
+    at matcher (/app/node_modules/router/lib/layer.js:86:23)
+    at new Layer (/app/node_modules/router/lib/layer.js:93:62)
+    at Function.route (/app/node_modules/router/index.js:428:17)
+    at Function.route (/app/node_modules/express/lib/application.js:257:22)
+    at app.<computed> [as get] (/app/node_modules/express/lib/application.js:478:22)
+    at <anonymous> (/app/server.ts:362:9) {
+  originalPath: '*'
+}
+Node.js v22.22.0
+npm warn config production Use `--omit=dev` instead.
+> digitalsite@0.0.0 start
+> npx tsx server.ts
+npm warn config production Use `--omit=dev` instead.
+[dotenv@17.3.1] injecting env (0) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+WARNING: STRIPE_SECRET_KEY is missing. Stripe payments will be disabled.
+/app/node_modules/path-to-regexp/src/index.ts:225
+      throw new PathError(`Missing parameter name at index ${index}`, str);
+            ^
+    at parse (/app/node_modules/path-to-regexp/src/index.ts:242:62)
+    at pathToRegexp (/app/node_modules/path-to-regexp/src/index.ts:480:54)
+    at Object.match (/app/node_modules/path-to-regexp/src/index.ts:438:28)
+    at matcher (/app/node_modules/router/lib/layer.js:86:23)
+    at new Layer (/app/node_modules/router/lib/layer.js:93:62)
+/app/node_modules/path-to-regexp/src/index.ts:225
+    at Function.route (/app/node_modules/router/index.js:428:17)
+    at Function.route (/app/node_modules/express/lib/application.js:257:22)
+    at app.<computed> [as get] (/app/node_modules/express/lib/application.js:478:22)
+      throw new PathError(`Missing parameter name at index ${index}`, str);
+    at <anonymous> (/app/server.ts:362:9) {
+  originalPath: '*'
+}
+Node.js v22.22.0
+npm warn config production Use `--omit=dev` instead.
+> digitalsite@0.0.0 start
+> npx tsx server.ts
+npm warn config production Use `--omit=dev` instead.
+[dotenv@17.3.1] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+WARNING: STRIPE_SECRET_KEY is missing. Stripe payments will be disabled.
+            ^
+PathError [TypeError]: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (/app/node_modules/path-to-regexp/src/index.ts:225:13)
+    at parse (/app/node_modules/path-to-regexp/src/index.ts:242:62)
+    at pathToRegexp (/app/node_modules/path-to-regexp/src/index.ts:480:54)
+    at Object.match (/app/node_modules/path-to-regexp/src/index.ts:438:28)
+    at matcher (/app/node_modules/router/lib/layer.js:86:23)
+    at new Layer (/app/node_modules/router/lib/layer.js:93:62)
+    at Function.route (/app/node_modules/router/index.js:428:17)
+    at Function.route (/app/node_modules/express/lib/application.js:257:22)
+    at app.<computed> [as get] (/app/node_modules/express/lib/application.js:478:22)
+    at <anonymous> (/app/server.ts:362:9) {
+
+originalPath: '*'
+}
+Node.js v22.22.0
