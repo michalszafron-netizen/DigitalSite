@@ -172,8 +172,44 @@ app.post('/api/payments/stripe/webhook', express.raw({ type: 'application/json' 
 const dbPath = join(__dirname, 'digitalsite.db');
 const db = new sqlite3.Database(dbPath);
 
-// Migrate: add booking_url column if not exists
-db.run("ALTER TABLE services ADD COLUMN booking_url TEXT", () => { /* ignore if already exists */ });
+// Auto-initialize all tables on startup (safe: CREATE TABLE IF NOT EXISTS)
+db.serialize(() => {
+    db.run(`CREATE TABLE IF NOT EXISTS products (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        description TEXT,
+        price REAL NOT NULL,
+        oldPrice REAL,
+        type TEXT NOT NULL,
+        category TEXT NOT NULL,
+        image_url TEXT,
+        file_path TEXT,
+        details TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`);
+    db.run(`CREATE TABLE IF NOT EXISTS submissions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        subject TEXT,
+        message TEXT NOT NULL,
+        status TEXT DEFAULT 'NEW',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`);
+    db.run(`CREATE TABLE IF NOT EXISTS services (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        duration TEXT NOT NULL,
+        price TEXT NOT NULL,
+        description TEXT NOT NULL,
+        details TEXT,
+        booking_url TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`);
+    // Migration for existing DBs: add booking_url if not yet present
+    db.run("ALTER TABLE services ADD COLUMN booking_url TEXT", () => { /* ignore if already exists */ });
+    console.log('Database tables ensured.');
+});
 
 // Multer setup
 const storage = multer.diskStorage({
