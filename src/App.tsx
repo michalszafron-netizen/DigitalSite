@@ -4,6 +4,8 @@ import { Calendar, Mail, FileText, Video, Package, Link as LinkIcon, ChevronRigh
 import { motion, AnimatePresence } from 'framer-motion';
 import AdminDashboard from './components/AdminDashboard';
 
+const API = window.location.hostname === 'localhost' ? 'http://localhost:3002' : '';
+
 // --- Types ---
 
 interface Product {
@@ -57,12 +59,12 @@ const LandingPage = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:3002/api/products')
+    fetch(`${API}/api/products`)
       .then(res => res.json())
       .then(data => setProducts(data))
       .catch(err => console.error('Fetch error (products):', err));
 
-    fetch('http://localhost:3002/api/services')
+    fetch(`${API}/api/services`)
       .then(res => res.json())
       .then(data => setServices(data))
       .catch(err => console.error('Fetch error (services):', err));
@@ -75,7 +77,7 @@ const LandingPage = () => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const res = await fetch('http://localhost:3002/api/contact', {
+      const res = await fetch(`${API}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -108,7 +110,7 @@ const LandingPage = () => {
 
     try {
       // Domyślnie używamy Stripe (łatwiejszy dla osób fizycznych / testów)
-      const res = await fetch('http://localhost:3002/api/payments/stripe/create-checkout-session', {
+      const res = await fetch(`${API}/api/payments/stripe/create-checkout-session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
